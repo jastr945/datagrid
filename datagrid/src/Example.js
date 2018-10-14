@@ -1,7 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDataGrid from 'react-data-grid';
+import Form from "react-jsonschema-form";
 import 'bootstrap/dist/css/bootstrap.css';
+
+
+const schema = {
+  title: "Add New Record",
+  type: "object",
+  required: [],
+  properties: {
+    title: {type: "string", title: "Title"},
+    content: {type: "string", title: "Content"}
+  }
+};
+
+const auth = {
+  auth: {
+  username: process.env.REACT_APP_KINTO_USER,
+  password: process.env.REACT_APP_KINTO_PASSWORD
+}};
 
 
 class Example extends React.Component {
@@ -23,12 +41,7 @@ class Example extends React.Component {
   }
 
   getData = () => {
-    axios.get('http://localhost:8888/v1/buckets/default/collections/test-1/records', {
-      auth: {
-        username: {process.env.KINTO_USER},
-        password: {process.env.KINTO_PASSWORD}
-      }
-    })
+    axios.get('http://localhost:8888/v1/buckets/default/collections/test-1/records', auth)
     .then((res) => {
       let rows = [];
       for (let i = 0; i < res.data.data.length; i++) {
@@ -49,13 +62,25 @@ class Example extends React.Component {
     return this.state.rows[i];
   };
 
+  submitForm = ({formData}) => {
+    axios.post('http://localhost:8888/v1/buckets/default/collections/test-1/records', {"data":formData}, auth)
+      .then((res) => {
+        this.getData();
+      })
+      .catch((err) => { console.log(err); })
+  }
+
   render() {
     return  (
-      <ReactDataGrid
-        columns={this._columns}
-        rowGetter={this.rowGetter}
-        rowsCount={this.state.rows.length}
-        minHeight={500} />);
+      <div>
+        <Form schema={schema} onSubmit={this.submitForm} />
+        <ReactDataGrid
+          columns={this._columns}
+          rowGetter={this.rowGetter}
+          rowsCount={this.state.rows.length}
+          minHeight={500} />
+      </div>
+    )
   }
 }
 
