@@ -1,0 +1,24 @@
+.main {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+form {
+  width: 40%;
+  padding: 1em;
+  margin: 0 auto;
+}
+.scrollToRow {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0 2em;
+}
+.react-grid-Container {
+  padding: 1em 2em;
+}
