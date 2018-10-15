@@ -30,7 +30,7 @@ services:
     build:
       context: ./datagrid
       args:
-        - KINTO_USER=${KINTO_USER}
-        - KINTO_PASSWORD=${KINTO_PASSWORD}
+        - REACT_APP_KINTO_USER=${REACT_APP_KINTO_USER}
+        - REACT_APP_KINTO_PASSWORD=${REACT_APP_KINTO_PASSWORD}
     ports:
-      - '3000:3000'
+      - '9000:9000'
