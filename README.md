@@ -4,7 +4,7 @@ Postgres / Kinto / React Datagrid / React-Json-Forms experiment.
 
 ## Prerequisites
 
-Python 3, Node.js, httpie
+Python 3, Node.js
 
 ## Run with Docker
 
