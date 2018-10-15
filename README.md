@@ -1,6 +1,6 @@
 # datagrid
 
-Postgres / Kinto / React Datagrid / React-Json-Forms experiment.
+Postgres / Kinto / React Datagrid / react-jsonschema-form experiment.
 
 ## Prerequisites
 
